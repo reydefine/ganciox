@@ -1,5 +1,5 @@
 import { version } from './package.json'
-import locales from './locales/index'
+import locales from './i18n/locales/index'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -25,17 +25,20 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
+    bundle: {
+      optimizeTranslationDirective: false
+    },
     locales: Object.keys(locales).map((key: string) => ({
       code: key,
       // name: locales[key],
-      file:  `./${key}.json`,// 'loader.ts',
+      file: `./${key}.json`,// 'loader.ts',
       language: key
     })),
     langDir: 'locales',
     lazy: true,
     strategy: 'no_prefix',
     skipSettingLocaleOnNavigate: true,
-    
+
     compilation: {
       strictMessage: false // allow HTML in locales
     }
